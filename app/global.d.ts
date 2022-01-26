@@ -6,3 +6,11 @@ declare global {
     handleThemeChange: () => void;
   }
 }
+
+declare global {
+  namespace NodeJS {
+    interface ProcessEnv {
+      LGN_COOKIE_SECRET: string;
+    }
+  }
+}
