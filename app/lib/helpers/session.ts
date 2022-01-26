@@ -13,7 +13,7 @@ const {
     secure: true,
     secrets: [process.env.LGN_COOKIE_SECRET],
   },
-  dir: '/sessions',
+  dir: 'sessions',
 });
 
 const getSession = (request: Request): Promise<Session> => _getSession(request.headers.get('cookie'));
