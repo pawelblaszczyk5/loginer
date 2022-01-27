@@ -1,17 +1,13 @@
-name: Deploy
+name: CI/CD
 
 on:
-  workflow_run:
-    workflows: ['CI']
+  push:
     branches: [main]
-    types:
-      - completed
 
 jobs:
-  deploy:
+  ci_cd:
     runs-on: ubuntu-latest
-    if: ${{ github.event.workflow_run.conclusion == 'success' }}
-    name: Deploy
+
     steps:
       - name: Checkout repository
         uses: actions/checkout@5a4ac9002d0be2fb38bd78e4b4dbde5606d7042f
@@ -25,8 +21,19 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
+      - name: Lint code
+        run: npm run lint:ci
+
       - name: Build
         run: npm run build
+
+      - name: Run tests with coverage
+        run: npm test -- --coverage
+
+      - name: Upload code coverage to codecov
+        uses: codecov/codecov-action@f32b3a3741e1053eb607407145bc9619351dc93b
+        with:
+          files: coverage/lcov.info
 
       - name: Upload files
         uses: SamKirkland/FTP-Deploy-Action@a9644610a0efe63542b1887c9317ce8628f56521
@@ -43,16 +50,17 @@ jobs:
             **/.cache/**
             **/.storybook/**
             **/app/**
+            **/coverage/**
             .babelrc
             .eslintrc.json
             .gitignore
-            .pretterc.json
+            .prettierrc.json
             codecov.yml
             jest.config.json
             jest.setup.ts
             LICENSE
             postcss.config.js
-            README.MD
+            README.md
             remix.config.js
             remix.env.d.ts
             tailwind.config.js
