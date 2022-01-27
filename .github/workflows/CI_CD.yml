@@ -42,7 +42,6 @@ jobs:
           username: ${{ secrets.FTP_USERNAME }}
           password: ${{ secrets.FTP_PASSWORD }}
           server-dir: public_nodejs/
-          dry-run: true
           exclude: |
             **/.git*
             **/.git*/**
@@ -66,14 +65,14 @@ jobs:
             tailwind.config.js
             tsconfig.json
 
-      # - name: Build and restart
-      #   uses: garygrossgarten/github-action-ssh@2b10f41b5a33808f6d24eafd253296766308b7c4
-      #   with:
-      #     command: |
-      #       cd domains/${{ secrets.CT8_DOMAIN }}/public_nodejs/
-      #       npm ci
-      #       devil www restart ${{ secrets.CT8_DOMAIN }}
-      #     host: ${{ secrets.SSH_HOST }}
-      #     username: ${{ secrets.SSH_USERNAME }}
-      #     password: ${{ secrets.SSH_PASSWORD}}
-      #     tryKeyboard: true
+      - name: Build and restart
+        uses: garygrossgarten/github-action-ssh@2b10f41b5a33808f6d24eafd253296766308b7c4
+        with:
+          command: |
+            cd domains/${{ secrets.CT8_DOMAIN }}/public_nodejs/
+            npm ci
+            devil www restart ${{ secrets.CT8_DOMAIN }}
+          host: ${{ secrets.SSH_HOST }}
+          username: ${{ secrets.SSH_USERNAME }}
+          password: ${{ secrets.SSH_PASSWORD}}
+          tryKeyboard: true
