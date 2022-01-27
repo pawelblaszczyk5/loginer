@@ -35,8 +35,28 @@ jobs:
           username: ${{ secrets.FTP_USERNAME }}
           password: ${{ secrets.FTP_PASSWORD }}
           server-dir: public_nodejs/
+          dry-run: true
           exclude: |
-            !{package.json,app.js,package-lock.json,static/**,server/**}
+            **/.git*
+            **/.git*/**
+            **/node_modules/**
+            **/.cache/**
+            **/.storybook/**
+            **/app/**
+            .babelrc
+            .eslintrc.json
+            .gitignore
+            .pretterc.json
+            codecov.yml
+            jest.config.json
+            jest.setup.ts
+            LICENSE
+            postcss.config.js
+            README.MD
+            remix.config.js
+            remix.env.d.ts
+            tailwind.config.js
+            tsconfig.json
 
       - name: Build and restart
         uses: garygrossgarten/github-action-ssh@2b10f41b5a33808f6d24eafd253296766308b7c4
