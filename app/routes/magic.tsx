@@ -1,9 +1,9 @@
 import type { LoaderFunction } from 'remix';
 
-import { auth } from '~/lib/helpers';
+import { auth, EMAIL_LINK_STRATEGY } from '~/lib/helpers';
 
 export const loader: LoaderFunction = async ({ request }) => {
-  await auth.authenticate('email-link', request, {
+  await auth.authenticate(EMAIL_LINK_STRATEGY, request, {
     successRedirect: '/me',
     failureRedirect: '/login',
   });

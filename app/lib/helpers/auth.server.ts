@@ -8,14 +8,16 @@ const AUTH_SECRET = process.env.LGN_AUTH_SECRET;
 
 export const auth = new Authenticator<User>(sessionStorage);
 
-auth.use(
-  new EmailLinkStrategy(
-    { sendEmail, secret: AUTH_SECRET, callbackURL: '/magic' },
+const emailLinkStrategy = new EmailLinkStrategy(
+  { sendEmail, secret: AUTH_SECRET, callbackURL: '/magic' },
 
-    async ({ email }: { email: string }) => {
-      return {
-        email,
-      };
-    },
-  ),
+  async ({ email }: { email: string }) => {
+    return {
+      email,
+    };
+  },
 );
+
+auth.use(emailLinkStrategy);
+
+export const EMAIL_LINK_STRATEGY = emailLinkStrategy.name;
