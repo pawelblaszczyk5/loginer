@@ -2,11 +2,7 @@ import type { Session } from 'remix';
 
 import { createFileSessionStorage } from 'remix';
 
-const {
-  commitSession,
-  destroySession,
-  getSession: _getSession,
-} = createFileSessionStorage({
+export const sessionStorage = createFileSessionStorage({
   cookie: {
     name: 'SESSIONID',
     httpOnly: true,
@@ -17,6 +13,7 @@ const {
   dir: 'sessions',
 });
 
-const getSession = (request: Request): Promise<Session> => _getSession(request.headers.get('cookie'));
+export const getSession = (request: Request): Promise<Session> =>
+  sessionStorage.getSession(request.headers.get('cookie'));
 
-export { commitSession, destroySession, getSession };
+export const { commitSession, destroySession } = sessionStorage;

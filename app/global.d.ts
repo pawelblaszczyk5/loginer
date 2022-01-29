@@ -11,6 +11,7 @@ declare global {
   namespace NodeJS {
     interface ProcessEnv {
       LGN_COOKIE_SECRET: string;
+      LGN_AUTH_SECRET: string;
     }
   }
 }
