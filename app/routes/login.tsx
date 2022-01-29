@@ -5,7 +5,6 @@ import { auth, getSession } from '~/lib/helpers';
 export const loader: LoaderFunction = async ({ request }) => {
   const user = await auth.isAuthenticated(request);
 
-  console.log((await getSession(request)).data);
   return null;
 };
 

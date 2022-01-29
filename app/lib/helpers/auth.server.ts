@@ -13,8 +13,6 @@ auth.use(
     { sendEmail, secret: AUTH_SECRET, callbackURL: '/magic' },
 
     async ({ email }: { email: string }) => {
-      console.log(email);
-
       return {
         email,
       };
