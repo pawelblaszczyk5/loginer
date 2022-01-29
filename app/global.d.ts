@@ -12,6 +12,9 @@ declare global {
     interface ProcessEnv {
       LGN_COOKIE_SECRET: string;
       LGN_AUTH_SECRET: string;
+      LGN_SMTP_USER: string;
+      LGN_SMTP_PASS: string;
+      LGN_SMTP_HOST: string;
     }
   }
 }
