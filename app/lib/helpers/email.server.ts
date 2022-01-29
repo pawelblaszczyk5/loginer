@@ -13,7 +13,7 @@ const transporter = createTransport({
   },
 });
 
-export const sendEmail: SendEmailFunction<User> = async ({ emailAddress, user, domainUrl, magicLink }) => {
+export const sendEmail: SendEmailFunction<User> = async ({ emailAddress, magicLink }) => {
   await transporter.sendMail({
     from: '"Loginer Magic Link" <magic@loginer.ct8.pl>',
     to: emailAddress,

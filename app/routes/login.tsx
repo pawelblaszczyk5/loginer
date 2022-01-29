@@ -1,9 +1,10 @@
 import type { ActionFunction, LoaderFunction } from 'remix';
-import { useActionData, Form } from 'remix';
-import { auth, getSession } from '~/lib/helpers';
+
+import { Form } from 'remix';
+import { auth } from '~/lib/helpers';
 
 export const loader: LoaderFunction = async ({ request }) => {
-  const user = await auth.isAuthenticated(request);
+  await auth.isAuthenticated(request, { successRedirect: '/me' });
 
   return null;
 };
