@@ -21,7 +21,6 @@
     "postinstall": "remix setup node"
   },
   "dependencies": {
-    "@prisma/client": "^3.8.1",
     "@remix-run/express": "^1.1.3",
     "@remix-run/react": "^1.1.3",
     "compression": "^1.7.4",
@@ -82,6 +81,7 @@
     "postcss-cli": "^9.1.0",
     "prettier": "^2.5.1",
     "prettier-plugin-tailwindcss": "^0.1.4",
+    "prisma": "^3.8.1",
     "storybook-addon-themes": "^6.1.0",
     "tsconfig-paths-webpack-plugin": "^3.5.2",
     "typescript": "^4.5.5",
