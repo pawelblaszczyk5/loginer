@@ -1,4 +1,4 @@
-import type { User } from '~/lib/types';
+import type { User } from '@prisma/client';
 import type { LoaderFunction } from 'remix';
 
 import { json, useLoaderData } from 'remix';
@@ -13,7 +13,12 @@ export const loader: LoaderFunction = async ({ request }) => {
 const Screen = () => {
   const user = useLoaderData<User>();
 
-  return <h1>{user.email}</h1>;
+  return (
+    <h1>
+      {user.email}
+      {user.id}
+    </h1>
+  );
 };
 
 export default Screen;

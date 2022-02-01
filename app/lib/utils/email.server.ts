@@ -1,5 +1,5 @@
 import type { SendEmailFunction } from 'remix-auth-email-link';
-import type { User } from '~/lib/types';
+import type { User } from '@prisma/client';
 
 import { createTransport } from 'nodemailer';
 

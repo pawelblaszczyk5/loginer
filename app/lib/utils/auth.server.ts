@@ -1,7 +1,7 @@
-import type { User } from '~/lib/types';
+import type { User } from '@prisma/client';
 
 import { Authenticator } from 'remix-auth';
-import { sendEmail, sessionStorage } from '~/lib/utils';
+import { db, sendEmail, sessionStorage } from '~/lib/utils';
 import { EmailLinkStrategy } from 'remix-auth-email-link';
 
 const AUTH_SECRET = process.env.LGN_AUTH_SECRET;
@@ -12,9 +12,17 @@ const emailLinkStrategy = new EmailLinkStrategy(
   { sendEmail, secret: AUTH_SECRET, callbackURL: '/magic' },
 
   async ({ email }: { email: string }) => {
-    return {
-      email,
-    };
+    const user = await db.user.upsert({
+      where: {
+        email,
+      },
+      update: {},
+      create: {
+        email,
+      },
+    });
+
+    return user;
   },
 );
 
