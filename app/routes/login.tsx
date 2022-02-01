@@ -1,7 +1,7 @@
 import type { ActionFunction, LoaderFunction } from 'remix';
 
 import { Form } from 'remix';
-import { auth, EMAIL_LINK_STRATEGY } from '~/lib/helpers';
+import { auth, EMAIL_LINK_STRATEGY } from '~/lib/utils';
 
 export const loader: LoaderFunction = async ({ request }) => {
   await auth.isAuthenticated(request, { successRedirect: '/me' });

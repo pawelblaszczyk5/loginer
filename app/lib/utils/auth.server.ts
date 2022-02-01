@@ -1,7 +1,7 @@
 import type { User } from '~/lib/types';
 
 import { Authenticator } from 'remix-auth';
-import { sendEmail, sessionStorage } from '~/lib/helpers';
+import { sendEmail, sessionStorage } from '~/lib/utils';
 import { EmailLinkStrategy } from 'remix-auth-email-link';
 
 const AUTH_SECRET = process.env.LGN_AUTH_SECRET;
