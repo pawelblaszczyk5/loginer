@@ -71,6 +71,7 @@ jobs:
           command: |
             cd domains/${{ secrets.CT8_DOMAIN }}/public_nodejs/
             npm ci
+            npx prisma migrate deploy
             devil www restart ${{ secrets.CT8_DOMAIN }}
           host: ${{ secrets.SSH_HOST }}
           username: ${{ secrets.SSH_USERNAME }}
